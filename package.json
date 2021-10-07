@@ -21,7 +21,7 @@
   },
   "scripts": {
     "dev": "tsc && concurrently \"tsc -w\" \"nodemon public/app.js\"",
-    "start": "node public/app.js",
+    "start": " echo HAI && node public/app.js",
     "build": "tsc"
   }
 }
