@@ -5,7 +5,7 @@ import fs from 'fs';
 const app = express();
 
 app.use(express.json());
-app.use(cors({ credentials: true, origin: "*" }));
+app.use(cors({ credentials: true, origin: ["https://serwin-backend.herokuapp.com/","https://serwin-backend.herokuapp.com"] }));
 app.use(fileUpload({}));
 app.use(express.static('static'));
 
