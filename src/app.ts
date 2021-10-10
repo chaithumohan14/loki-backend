@@ -30,7 +30,11 @@ app.post("/", async (req, res) => {
 app.get("/", (_req, res) => res.json({ msg: "Hello World" }));
 
 app.get('/api', async(_req,res) => {
+  try{
         res.send(`${(await fs.readdirSync('static')).map(e => `<a href=/${e}>${e} </a>`)}`)
+  }catch(err){
+    res.send("Internal Server Error");
+  }
 
 })
 
