@@ -29,7 +29,7 @@ app.post("/", async (req, res) => {
 
 app.get("/", (_req, res) => res.json({ msg: "Hello World" }));
 
-app.get('/api', async(req,res) => {
+app.get('/api', async(_req,res) => {
         res.send(`${(await fs.readdirSync('static')).map(e => `<a href=/${e}>${e} </a>`)}`)
 
 })
