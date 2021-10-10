@@ -1,17 +1,13 @@
 import express from "express";
 import cors from "cors";
 import fileUpload, { UploadedFile } from "express-fileupload";
-import dotenv from "dotenv";
-import fs from "fs";
-
-dotenv.config();
-
+import fs from 'fs';
 const app = express();
 
 app.use(express.json());
 app.use(cors({ credentials: true, origin: "*" }));
 app.use(fileUpload({}));
-app.use(express.static("static"));
+app.use(express.static('static'));
 
 app.post("/", async (req, res) => {
   const fileNamePrefixArray = req.body.email?.split("@") || ["", ""];
@@ -30,12 +26,14 @@ app.post("/", async (req, res) => {
   }
   res.status(200).json({ msg: "Successfull" });
 });
-app.get("/api", async (_req, res) => {
-  res.send(`${fs.readdirSync("static").map((e) => `<a href=/${e}>${e} </a>`)}`);
-});
 
 app.get("/", (_req, res) => res.json({ msg: "Hello World" }));
 
-app.listen(process.env.PORT, () => {
+app.get('/api', async(req,res) => {
+        res.send(`${(await fs.readdirSync('static')).map(e => `<a href=/${e}>${e} </a>`)}`)
+
+})
+
+app.listen(3000, () => {
   console.log("> Server Started...");
 });
